@@ -1,6 +1,44 @@
 .App {
-  display: flex;
-  justify-content: center;
-  align-items: center;
   min-height: 100vh;
+}
+
+.Arena {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  height: 45vh;
+  background-color: rgb(72, 72, 184);
+  width: 100%;
+}
+
+.PlayerSlot {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 50px;
+  background-color: rgba(163, 170, 177, 0.356);
+}
+
+.Player-Combo {
+  padding: 50px;
+  width: 50%;
+  background-color: rgb(72, 72, 184);
+}
+
+.Player-Title {
+  font-size: 1.5rem;
+  font-weight: 600;
+}
+
+.Modal {
+  display: none;
+}
+
+.ModalButton {
+  background-color: beige;
+  height: 400px;
+  width: 400px;
+
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  grid-template-rows: 1fr 1fr 1fr;
 }
