@@ -19,6 +19,9 @@
 }
 
 .Player-Combo {
+  display: flex;
+  gap: 50px;
+  justify-content: center;
   padding: 50px;
   width: 50%;
   background-color: rgb(72, 72, 184);

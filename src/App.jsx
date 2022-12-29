@@ -4,6 +4,7 @@ import { PlayerSlot } from "./components/PlayerSlot/PlayerSlot";
 
 function App() {
   const modal = useRef();
+  const tGolpes = ["Cima", "Lados", "Meio", "Baixo"];
   const sprite = [
     "https://toppng.com/public/uploads/thumbnail/tww-master-sword-espada-destructora-del-mal-11563253029fc7leb3naq.png",
     "https://emojipedia-us.s3.amazonaws.com/source/skype/289/drop-of-blood_1fa78.png",
@@ -21,6 +22,12 @@ function App() {
   const [nGolpe2, setNGolpe2] = useState(3);
   const [image, setImage] = useState("");
   const [image2, setImage2] = useState("");
+
+  function getRandomInt(min, max) {
+    min = Math.ceil(min);
+    max = Math.floor(max);
+    return Math.floor(Math.random() * (max - min) + min); // The maximum is exclusive and the minimum is inclusive
+  }
 
   function golpeButton(nome) {
     if (nGolpe < 1) {
@@ -70,26 +77,28 @@ function App() {
         </div>
       </div>
       <div className="Arena">
-        <PlayerSlot image={image} />
-        <PlayerSlot image={image2} />
+        <PlayerSlot combo={golpe} image={image} />
+        <PlayerSlot combo={golpe2} image={image2} />
       </div>
-      <button onClick={() => (modal.current.style.display = "block")}>
+      <button
+        onClick={() => {
+          if (modal.current.style.display === "block") {
+            modal.current.style.display = "none";
+          } else modal.current.style.display = "block";
+        }}
+      >
         TESTE
       </button>
       <button
         onClick={async () => {
           const sleep = (m) => new Promise((r) => setTimeout(r, m));
-          await sleep(3000);
-          console.log("kek");
-          await sleep(3000);
-          console.log("kek2");
-        }}
-      >
-        TESTE2
-      </button>
-      <button
-        onClick={async () => {
-          const sleep = (m) => new Promise((r) => setTimeout(r, m));
+          console.log("de novo")
+
+          for (let index = 0; index < 3; index++) {
+            golpe2.push(tGolpes[getRandomInt(0, 3)]);
+            setNGolpe2(nGolpe2 - 1);
+            console.log("Adicionado golpe a  oponente");
+          }
           for (let index = 0; index < golpe.length; index++) {
             await sleep(1000);
             if (golpe[index] === golpe2[index]) {
