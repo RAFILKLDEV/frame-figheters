@@ -11,13 +11,7 @@ function App() {
     "https://i.seadn.io/gae/Rg3wJJ6hy-XV1CaJP1lFaFvpBIm2m5li0IlvKI03Tc9C7y0rvZUF_gEfI__fqDNZSp8jtkZyKGxrErThhwN3jSxauMZVFt5DDah9jSU?auto=format&w=1000",
   ];
   const [golpe, setGolpe] = useState([]);
-  const [golpe2, setGolpe2] = useState([
-    "Cima",
-    "Cima",
-    "Cima",
-    "Cima",
-    "Cima",
-  ]);
+  const [golpe2, setGolpe2] = useState([]);
   const [nGolpe, setNGolpe] = useState(3);
   const [nGolpe2, setNGolpe2] = useState(3);
   const [image, setImage] = useState("");
@@ -92,7 +86,7 @@ function App() {
       <button
         onClick={async () => {
           const sleep = (m) => new Promise((r) => setTimeout(r, m));
-          console.log("de novo")
+          console.log("de novo");
 
           for (let index = 0; index < 3; index++) {
             golpe2.push(tGolpes[getRandomInt(0, 3)]);
@@ -107,6 +101,7 @@ function App() {
               console.log("Defendeu");
             } else {
               setImage2(sprite[1]);
+              setImage(sprite[0]);
               console.log("Tomou");
             }
           }
