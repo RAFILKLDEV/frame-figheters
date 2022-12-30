@@ -1,10 +1,11 @@
 import { useRef, useState } from "react";
-import "./App.css";
 import { PlayerSlot } from "./components/PlayerSlot/PlayerSlot";
+import { Player1, Player2 } from "./constants";
+import { Ataque, gerarAtkOponente, iniciativa } from "./GameMechanics";
+import "./App.css";
 
 function App() {
   const modal = useRef();
-  const tGolpes = ["Cima", "Lados", "Meio", "Baixo"];
   const sprite = [
     "https://toppng.com/public/uploads/thumbnail/tww-master-sword-espada-destructora-del-mal-11563253029fc7leb3naq.png",
     "https://emojipedia-us.s3.amazonaws.com/source/skype/289/drop-of-blood_1fa78.png",
@@ -16,12 +17,6 @@ function App() {
   const [nGolpe2, setNGolpe2] = useState(3);
   const [image, setImage] = useState("");
   const [image2, setImage2] = useState("");
-
-  function getRandomInt(min, max) {
-    min = Math.ceil(min);
-    max = Math.floor(max);
-    return Math.floor(Math.random() * (max - min) + min); // The maximum is exclusive and the minimum is inclusive
-  }
 
   function golpeButton(nome) {
     if (nGolpe < 1) {
@@ -71,8 +66,8 @@ function App() {
         </div>
       </div>
       <div className="Arena">
-        <PlayerSlot combo={golpe} image={image} />
-        <PlayerSlot combo={golpe2} image={image2} />
+        <PlayerSlot combo={golpe} image={image} player={Player1} />
+        <PlayerSlot combo={golpe2} image={image2} player={Player2} />
       </div>
       <button
         onClick={() => {
@@ -84,6 +79,28 @@ function App() {
         TESTE
       </button>
       <button
+        onClick={async () => {
+          let vencedor = iniciativa(
+            Player1.nome,
+            Player1.stats.velocidade,
+            Player2.nome,
+            Player2.stats.velocidade
+          );
+
+          await gerarAtkOponente(golpe2, setGolpe2, nGolpe2, setNGolpe2);
+
+          if (vencedor === Player1.nome) {
+            await Ataque(Player1.nome, golpe, golpe);
+            await Ataque(Player2.nome, golpe2, golpe);
+          } else {
+            await Ataque(Player2.nome, golpe2, golpe);
+            await Ataque(Player1.nome, golpe, golpe2);
+          }
+        }}
+      >
+        TESTE2
+      </button>
+      {/* <button
         onClick={async () => {
           const sleep = (m) => new Promise((r) => setTimeout(r, m));
           console.log("de novo");
@@ -108,7 +125,7 @@ function App() {
         }}
       >
         Combate
-      </button>
+      </button> */}
     </div>
   );
 }

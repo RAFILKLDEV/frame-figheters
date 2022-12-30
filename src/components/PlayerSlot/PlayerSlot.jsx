@@ -5,8 +5,8 @@ export function PlayerSlot(props) {
         <div className="StatBar-Content">
           {Array(props.number)
             .fill("")
-            .map(() => (
-              <div className="StatBar-Verde"></div>
+            .map((e, i) => (
+              <div key={e + i} className="StatBar-Verde"></div>
             ))}
         </div>
         <div>{props.name}</div>
@@ -19,20 +19,17 @@ export function PlayerSlot(props) {
     <div className="PlayerSlot">
       <div className="Player-Combo">
         {props.combo?.map((e, i) => (
-          <div key={e + Math.random()}>{e}</div>
+          <div key={e + i}>{e}</div>
         ))}
       </div>
       <div className="Player-Avatar">
         <img src={props.image} alt="" height={"100%"} />
       </div>
       <div className="Player-Stats">
-        <StatBar number={5} name="Bloqueio" />
-        <StatBar number={3} name="Resistencia" />
-        <StatBar number={5} name="Esquiva" />
-        <StatBar number={7} name="Acerto" />
-        <StatBar number={20} name="Dano" />
+        <StatBar number={props.player.stats.bloqueio} name="Bloqueio" />
+        <StatBar number={props.player.stats.velocidade} name="Velocidade" />
       </div>
-      <div className="Player-Title">Player 1</div>
+      <div className="Player-Title">{props.player.nome}</div>
     </div>
   );
 }
