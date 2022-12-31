@@ -1,20 +1,6 @@
-export function PlayerSlot(props) {
-  function StatBar(props) {
-    return (
-      <div className="StatBar">
-        <div className="StatBar-Content">
-          {Array(props.number)
-            .fill("")
-            .map((e, i) => (
-              <div key={e + i} className="StatBar-Verde"></div>
-            ))}
-        </div>
-        <div>{props.name}</div>
-        <div>{props.number * 5}%</div>
-      </div>
-    );
-  }
+import { StatBar } from "../../StatBar/StarBar";
 
+export function PlayerSlot(props) {
   return (
     <div className="PlayerSlot">
       <div className="Player-Combo">

@@ -28,7 +28,7 @@ export async function Ataque(atacante, atacanteGolpes, defensorGolpes) {
     if (atacanteGolpes[index] === defensorGolpes[index]) {
       console.log("Defendeu");
     } else {
-      console.log("Tomou");
+      console.log("Recebeu Dano");
     }
   }
 }
@@ -43,6 +43,6 @@ export async function gerarAtkOponente(
   for (let index = 0; index < 3; index++) {
     golpes.push(tGolpes[getRandomInt(0, 3)]);
     setQteGolpes(qteGolpes - 1);
-    console.log("Adicionado golpe a  oponente");
+    console.log("Adicionado golpe a oponente");
   }
 }
